@@ -1,0 +1,23 @@
+
+
+<h4>{{title}} </h4>
+
+<!-- <p *ngFor="let product of products; let i=index" > {{product.name}} {{i}} </p> -->
+<div *ngFor="let product of products; let i=index" >
+    <h4>{{product.name}} </h4>
+    <p > 
+        {{product.description}}
+    </p>
+    <p > 
+        {{product.salesPrice}}
+    </p>
+
+    <a [routerLink]="['/product-edit',product.id]">Edit</a>
+</div>
+
+<!-- <button (click)="showResult()">Result</button> -->
+
+<app-product-create [minValue]="5" (onAdded)="NewProductAdded($event)"></app-product-create>
+
+
+

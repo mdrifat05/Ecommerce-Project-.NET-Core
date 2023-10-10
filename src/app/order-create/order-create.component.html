@@ -1,0 +1,42 @@
+<form [formGroup]="orderCreateForm" (ngSubmit)="save()">
+    <div class="form-group">
+        <label for="name">Date</label>
+        <input type="date" class="form-control" id="date" name="date" formControlName="date">
+
+    </div>
+    <div class="form-group">
+        <label for="customer">Customer</label>
+        <input type="text" class="form-control" id="customerId" name="customerId" formControlName="customerId">
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" name="description" formControlName="description">
+    </div>
+
+    <h4>Order Items</h4>
+
+    <div formArrayName="orderItems" *ngFor="let orderItem of orderItems.controls; let i = index;">
+        <h4>Give Product Details</h4>
+        <div [formGroupName]="i">
+            <div class="form-group">
+                <label for="{{'productId'+i}}">Product</label>
+                <input type="text" class="form-control" id="{{'productId'+i}}" name="productId" formControlName="productId">
+
+            </div>
+            <div class="form-group">
+                <label for="{{'qty'+i}}">Qty</label>
+                <input type="text" class="form-control" id="qty{{i}}" name="qty" formControlName="qty">
+            </div>
+            <div class="form-group">
+                <label for="unitPrice{{i}}">Unit Price</label>
+                <input type="text" class="form-control" id="unitPrice{{i}}" name="unitPrice" formControlName="unitPrice">
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Save" />
+
+    <input type="button" value="Add Item" (click)="addOrderItem()"  />
+</form>
+
+{{orderCreateForm.value | json}}
